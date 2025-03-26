@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Edit Major";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+@model MyWebApp.Models.Major
+<div class="ms-2 mx-2">
+    <h1>Edit Major</h1>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form asp-controller="Major" asp-action="Edit" asp-route-id="@Model.MajorID" method="post" class="mt-3">
+        <input type="hidden" asp-for="MajorID" />
+
+        <div style="margin-top:7px" class="form-group row">
+            <label asp-for="MajorName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="MajorName" class="form-control" placeholder="Tên ngành" />
+            </div>
+            <span asp-validation-for="MajorName" class="text-danger"></span>
+        </div>
+
+        <div style="margin-top:10px" class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </div>
+    </form>
+</div>

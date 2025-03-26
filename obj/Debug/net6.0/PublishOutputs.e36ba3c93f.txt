@@ -1,0 +1,7 @@
+C:\Users\ADMIN\source\repos\MyWebApp\obj\Debug\net6.0\PubTmp\Out\MyWebApp.exe
+C:\Users\ADMIN\source\repos\MyWebApp\obj\Debug\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\ADMIN\source\repos\MyWebApp\obj\Debug\net6.0\PubTmp\Out\appsettings.json
+C:\Users\ADMIN\source\repos\MyWebApp\obj\Debug\net6.0\PubTmp\Out\MyWebApp.dll
+C:\Users\ADMIN\source\repos\MyWebApp\obj\Debug\net6.0\PubTmp\Out\MyWebApp.deps.json
+C:\Users\ADMIN\source\repos\MyWebApp\obj\Debug\net6.0\PubTmp\Out\MyWebApp.runtimeconfig.json
+C:\Users\ADMIN\source\repos\MyWebApp\obj\Debug\net6.0\PubTmp\Out\MyWebApp.pdb

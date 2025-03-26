@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Student List";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <style>
+        
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 3rem;
+            color: #222;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center header">
+        <div class="title-container">
+            <h1 class="display-4">Danh Sách Học Sinh</h1>
+        </div>
+        <a href="https://localhost:7004/Admin/Student/List" class="btn btn-custom">Xem Danh Sách Học Sinh</a>
+
+        <div class="title-container">
+            <h1 class="display-4">Danh Sách Học Viên</h1>
+        </div>
+        <a href="https://localhost:7004/Admin/Learner" class="btn btn-custom">Xem Danh Sách Học Viên</a>
+
+        <div class="title-container">
+            <h1 class="display-4">Danh Sách Ngành</h1>
+        </div>
+        <a href="https://localhost:7004/Admin/Major" class="btn btn-custom">Xem Danh Sách Ngành</a>
+    </div>
+</body>
+</html>

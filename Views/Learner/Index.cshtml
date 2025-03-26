@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MyLayoutHelper.cshtml";
+}
+
+@model IEnumerable<Learner>
+<div class="ms-2 mx-2">
+    <h1>Learner List</h1>
+    @await Component.InvokeAsync("Major")
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <div class="input-group">
+            <input id="keyword"
+                   class="form-control"
+                   name="keyword"
+                   type="text"
+                   placeholder="Search learner" />
+            <button id="btnSearch"
+                    class="btn btn-primary"
+                    type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+    <div id="content">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Họ</th>
+                    <th>Tên</th>
+                    <th>Ngành</th>
+                    <th>Ngày tham gia</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                    <tr>
+                        <td>@s.LearnerID</td>
+                        <td>@s.FirstMidName</td>
+                        <td>@s.LastName</td>
+                        <td>@s.Major.MajorName</td>
+                        <td>@s.EnrollmentDate.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@s.LearnerID">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@s.LearnerID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.pageNum; i++)
+        {
+            <li class="page-item @(i == (ViewBag.CurrentPage ?? 1) ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { pageIndex = i, keyword = ViewBag.keyword })">@i</a>
+            </li>
+        }
+    </div>
+    <a asp-action="Create" class="btn btn-primary">Create Student</a>
+</div>
+
+@section Scripts {
+    <script>
+        // Thêm script ajax cho click vào page-item và nút search
+        $('body').on('click', 'li.page-item', function (e) {
+            e.preventDefault(); // Ngăn chặn hành động mặc định
+            var page = $(this).attr("page");
+            var mid = $(this).attr("mid");
+            var keyword = $(this).attr("keyword");
+
+            var data = { mid: mid, keyword: keyword, pageIndex: page };
+
+            $.ajax({
+                url: '@Url.Action("LearnerFilter", "Learner")',
+                data: data,
+                success: function (response) {
+                    $("div#content").html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error occurred:", error); // Log lỗi ra console
+                }
+            });
+        });
+
+        $("button#btnSearch").click(function (e) {
+            var keyword = $("#keyword").val();
+            var mid = '@ViewBag.mid'; // Lấy giá trị mid từ ViewBag
+            var data = { keyword: keyword, mid: mid };
+
+            $.ajax({
+                url: '@Url.Action("LearnerFilter", "Learner")',
+                data: data,
+                success: function (response) {
+                    $("div#content").html(response);
+                }
+            });
+        });
+    </script>
+}

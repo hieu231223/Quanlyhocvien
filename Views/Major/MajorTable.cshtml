@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Major>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mã Ngành</th>
+            <th>Tên Ngành</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var major in Model)
+        {
+            <tr>
+                <td>@major.MajorID</td>
+                <td>@major.MajorName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@major.MajorID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@major.MajorID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

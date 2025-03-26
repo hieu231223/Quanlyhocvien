@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MyWebApp.Models.Major>
+@{
+    ViewData["Title"] = "Danh Sách Ngành";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<div class="ms-2 mx-2">
+    <h1>Danh Sách Ngành</h1>
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" method="get" action="@Url.Action("Index")">
+        <div class="input-group">
+            <input id="keyword" class="form-control" name="keyword" type="text" placeholder="Tìm kiếm ngành" value="@ViewBag.keyword" />
+            <button id="btnSearch" class="btn btn-primary" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mã Ngành</th>
+                <th>Tên Ngành</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var major in Model)
+            {
+                <tr>
+                    <td>@major.MajorID</td>
+                    <td>@major.MajorName</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@major.MajorID">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@major.MajorID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.pageNum; i++)
+        {
+            <li class="page-item @(i == (ViewBag.CurrentPage ?? 1) ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { pageIndex = i, keyword = ViewBag.keyword })">@i</a>
+            </li>
+        }
+    </ul>
+    <a asp-action="Create" class="btn btn-primary">Tạo Ngành Mới</a>
+</div>
